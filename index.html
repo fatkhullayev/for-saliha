@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Bestie, Saliha</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            color: #5d4037;
+        }
+
+        /* Password Modal */
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f8bbd0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .password-content {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 320px;
+            animation: bounceIn 0.8s forwards;
+        }
+
+        .password-content h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ad1457;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #f48fb1;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-align: center;
+            outline: none;
+        }
+
+        .submit-btn {
+            background: #ad1457;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99;
+            transition: opacity 0.8s ease;
+        }
+
+        .welcome-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: #ad1457;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Main Content Container */
+        .container {
+            width: 100%;
+            max-width: 450px; /* iPhone uchun ideal kenglik */
+            padding: 15px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ad1457;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .tab.active {
+            background: #ad1457;
+            color: white;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            min-height: 400px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px;
+            color: #ad1457;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Letter Style */
+        .letter {
+            background: #fffafa;
+            border: 1px solid #f8bbd0;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Music Player Style */
+        .song-card {
+            background: #fdf2f5;
+            padding: 12px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .song-info h4 { font-size: 16px; margin-bottom: 5px; }
+        .song-info p { font-size: 12px; color: #888; margin-bottom: 10px; }
+
+        audio {
+            width: 100%;
+            height: 35px;
+            border-radius: 10px;
+        }
+
+        /* Notes Style */
+        .note {
+            background: #fce4ec;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-left: 5px solid #ad1457;
+            font-size: 14px;
+        }
+
+        /* Gallery Style */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .gallery-item {
+            height: 150px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        /* Animations */
+        @keyframes bounceIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .heart, .sparkle {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Password Modal -->
+<div class="password-modal" id="passwordModal">
+    <div class="password-content">
+        <h2>Hey Bestie! ✨</h2>
+        <p style="font-size: 14px; margin-bottom: 15px; color: #888;">Enter our secret code</p>
+        <input type="password" class="password-input" id="passwordInput" placeholder="Our secret...">
+        <button class="submit-btn" id="submitPassword">Open</button>
+    </div>
+</div>
+
+<!-- Welcome Screen -->
+<div class="welcome-screen" id="welcomeScreen" style="display: none;">
+    <h1 class="welcome-message">Welcome Saliha 💖 and enjoy. You are the best friend ever! ✨</h1>
+</div>
+
+<!-- Main Content -->
+<div class="container" id="mainContent" style="display: none;">
+    <div class="tabs">
+        <button class="tab active" data-tab="letter-tab">✉️ Letter</button>
+        <button class="tab" data-tab="music-tab">🎵 Vibes</button>
+        <button class="tab" data-tab="notes-tab">📝 Notes</button>
+        <button class="tab" data-tab="gallery-tab">🌷 Flowers</button>
+    </div>
+
+    <div class="content-area">
+        <!-- Letter Tab -->
+        <div class="tab-content active" id="letter-tab">
+            <h2>For My Friend</h2>
+            <div class="letter">
+                <p>Dear Saliha,</p><br>
+                <p>I just wanted to make this small space for you to remind you how amazing you are as a friend. Life is much better with you around!</p>
+                <p>Thank you for all the support, the laughs, and for being such a great person. You deserve all the happiness in the world.</p><br>
+                <p>Always stay as awesome as you are today!</p>
+                <p>Best regards, <br> Your Best Friend</p>
+            </div>
+        </div>
+
+        <!-- Music Tab -->
+        <div class="tab-content" id="music-tab">
+            <h2>Our Music</h2>
+
+            <!-- Song 1 -->
+            <div class="song-card">
+                <div class="song-info">
+                    <h4>Favorite Song 1</h4>
+                    <p>Artist Name</p>
+                </div>
+                <!-- Musiqa yo'lini (path) src="..." ga qo'ying -->
+                <audio controls>
+                    <source src="music1.mp3" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+
+            <!-- Song 2 -->
+            <div class="song-card">
+                <div class="song-info">
+                    <h4>Favorite Song 2</h4>
+                    <p>Artist Name</p>
+                </div>
+                <audio controls>
+                    <source src="music2.mp3" type="audio/mpeg">
+                    Your browser does not support audio.
+                </audio>
+            </div>
+        </div>
+
+        <!-- Notes Tab -->
+        <div class="tab-content" id="notes-tab">
+            <h2>Reminders</h2>
+            <div class="note">✨ Saliha, don't forget to take a break today!</div>
+            <div class="note">🌟 You're doing a great job, keep going.</div>
+            <div class="note">🥤 Stay hydrated and eat well!</div>
+            <div class="note">🌸 You are appreciated more than you know.</div>
+        </div>
+
+        <!-- Gallery Tab -->
+        <div class="tab-content" id="gallery-tab">
+            <h2>Flowers for Saliha</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1eaad721-3375-4d97-a5fa-cbf8a87d60b8.png" alt="Flower"></div>
+                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/73632299-5dde-4ded-805a-88a7dcb4b5e4.png" alt="Flower"></div>
+                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e9890063-b481-46f6-97a1-9fc753211e19.png" alt="Flower"></div>
+                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4bc3dffd-4971-4223-b7e4-3699d2b97bbe.png" alt="Flower"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordModal = document.getElementById('passwordModal');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const mainContent = document.getElementById('mainContent');
+        const passwordInput = document.getElementById('passwordInput');
+        const submitPassword = document.getElementById('submitPassword');
+
+        // Password Logic
+        submitPassword.addEventListener('click', function() {
+            if (passwordInput.value === 'gogoGAGA') {
+                passwordModal.style.display = 'none';
+                welcomeScreen.style.display = 'flex';
+
+                setTimeout(() => {
+                    welcomeScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        welcomeScreen.style.display = 'none';
+                        mainContent.style.display = 'block';
+                    }, 800);
+                }, 2000);
+            } else {
+                passwordInput.value = '';
+                passwordInput.placeholder = 'Wrong code, bestie!';
+            }
+        });
+
+        // Enter key support
+        passwordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') submitPassword.click();
+        });
+
+        // Tab switching
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const target = this.getAttribute('data-tab');
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === target) content.classList.add('active');
+                });
+            });
+        });
+
+        // Decorative background elements
+        function createDeco() {
+            const icons = ['✨', '🌸', '⭐', '☁️'];
+            for (let i = 0; i < 15; i++) {
+                const span = document.createElement('span');
+                span.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                span.className = 'sparkle';
+                span.style.left = Math.random() * 100 + 'vw';
+                span.style.top = Math.random() * 100 + 'vh';
+                span.style.fontSize = Math.random() * 20 + 10 + 'px';
+                document.body.appendChild(span);
+            }
+        }
+        createDeco();
+    });
+</script>
+</body>
+</html>
