@@ -6,304 +6,121 @@
     <title>For My Bestie, Saliha</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            color: #5d4037;
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+            overflow-x: hidden; color: #5d4037;
         }
 
         /* Password Modal */
         .password-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f8bbd0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            padding: 20px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #f8bbd0; display: flex; justify-content: center; align-items: center;
+            z-index: 100; padding: 20px;
         }
-
         .password-content {
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 100%;
-            max-width: 320px;
-            animation: bounceIn 0.8s forwards;
+            background: white; padding: 25px; border-radius: 20px; text-align: center;
+            width: 100%; max-width: 320px; animation: bounceIn 0.8s forwards;
         }
-
-        .password-content h2 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #ad1457;
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #f48fb1;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            font-size: 16px;
-            text-align: center;
-            outline: none;
-        }
-
-        .submit-btn {
-            background: #ad1457;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            font-weight: 600;
-        }
+        .password-input { width: 100%; padding: 12px; border: 2px solid #f48fb1; border-radius: 12px; margin-bottom: 15px; text-align: center; outline: none; }
+        .submit-btn { background: #ad1457; color: white; border: none; padding: 12px; border-radius: 12px; cursor: pointer; width: 100%; font-weight: 600; }
 
         /* Welcome Screen */
         .welcome-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, #fce4ec, #f8bbd0);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 99;
-            transition: opacity 0.8s ease;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 99; transition: opacity 0.8s ease;
         }
+        .welcome-message { font-family: 'Dancing Script', cursive; font-size: 32px; color: #ad1457; text-align: center; padding: 20px; }
 
-        .welcome-message {
-            font-family: 'Dancing Script', cursive;
-            font-size: 32px;
-            color: #ad1457;
-            text-align: center;
-            padding: 20px;
-        }
-
-        /* Main Content Container */
-        .container {
-            width: 100%;
-            max-width: 450px;
-            padding: 15px;
-            margin-top: 20px;
-            margin-bottom: 50px;
-        }
+        /* Main Container */
+        .container { width: 100%; max-width: 450px; padding: 15px; margin-top: 20px; margin-bottom: 50px; }
 
         .tabs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px;
         }
-
         .tab {
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            padding: 10px;
-            border-radius: 15px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #ad1457;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
+            background: rgba(255, 255, 255, 0.8); border: none; padding: 10px 5px; border-radius: 12px;
+            font-size: 11px; font-weight: 600; color: #ad1457; display: flex; flex-direction: column; align-items: center; gap: 4px;
         }
+        .tab.active { background: #ad1457; color: white; }
 
-        .tab.active {
-            background: #ad1457;
-            color: white;
-        }
+        .content-area { background: white; border-radius: 25px; padding: 20px; min-height: 450px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
 
-        .content-area {
-            background: white;
-            border-radius: 25px;
-            padding: 20px;
-            min-height: 400px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-        }
+        h2 { font-family: 'Dancing Script', cursive; font-size: 26px; color: #ad1457; margin-bottom: 15px; text-align: center; }
 
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
+        /* Forms Styles */
+        .add-box { background: #fff5f8; padding: 15px; border-radius: 15px; margin-bottom: 20px; border: 1px dashed #f48fb1; }
+        .form-input { width: 100%; padding: 10px; border: 1px solid #f8bbd0; border-radius: 10px; margin-bottom: 10px; outline: none; }
+        .file-btn { display: block; background: #f06292; color: white; padding: 10px; border-radius: 10px; text-align: center; cursor: pointer; font-size: 13px; margin-bottom: 10px; }
+        .action-btn { width: 100%; background: #ad1457; color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 600; }
 
-        .tab-content.active {
-            display: block;
-        }
-
-        h2 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 26px;
-            color: #ad1457;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        /* Letter Style */
-        .letter {
-            background: #fffafa;
-            border: 1px solid #f8bbd0;
-            padding: 15px;
-            border-radius: 15px;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* --- ADD NEW ELEMENTS STYLES --- */
-        .add-box {
-            background: #fff5f8;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            border: 1px dashed #f48fb1;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #f8bbd0;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .file-btn {
-            display: block;
-            background: #f06292;
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 13px;
-            margin-bottom: 10px;
-        }
-
-        .action-btn {
-            width: 100%;
-            background: #ad1457;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: 600;
-        }
-
-        /* Music Card */
-        .song-card {
-            background: #fdf2f5;
-            padding: 12px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .song-info h4 { font-size: 16px; margin-bottom: 5px; padding-right: 30px; }
+        /* Goal & Note & Song items */
+        .song-card, .note, .goal-item { background: #fdf2f5; padding: 12px; border-radius: 15px; margin-bottom: 12px; position: relative; }
+        .song-info h4 { font-size: 16px; margin-bottom: 5px; }
         .song-info p { font-size: 12px; color: #888; margin-bottom: 10px; }
-
         audio { width: 100%; height: 35px; }
+        .del-btn { position: absolute; right: 10px; top: 10px; background: none; border: none; color: #ad1457; font-weight: bold; font-size: 20px; cursor: pointer; }
+        .note { border-left: 5px solid #ad1457; padding-right: 35px; }
 
-        .note {
-            background: #fce4ec;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            border-left: 5px solid #ad1457;
-            font-size: 14px;
-            position: relative;
-            padding-right: 35px;
+        .goal-item { display: flex; align-items: center; gap: 10px; }
+        .goal-item.done span { text-decoration: line-through; opacity: 0.6; }
+
+        /* Magic Box */
+        .magic-card {
+            background: linear-gradient(135deg, #f06292, #ad1457);
+            color: white; padding: 30px 20px; border-radius: 20px; text-align: center; cursor: pointer;
+            box-shadow: 0 8px 15px rgba(173, 20, 87, 0.3); transition: transform 0.2s;
         }
+        #magicText { font-family: 'Dancing Script', cursive; font-size: 22px; margin-top: 15px; min-height: 50px; }
 
-        .del-item {
-            position: absolute;
-            right: 8px;
-            top: 8px;
-            color: #ad1457;
-            border: none;
-            background: none;
-            font-weight: bold;
-            font-size: 20px;
-            cursor: pointer;
-        }
+        /* Gallery */
+        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .gallery-item { height: 130px; border-radius: 12px; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Gallery Style */
-        .gallery {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+        /* Original Letter */
+        .letter { background: #fffafa; border: 1px solid #f8bbd0; padding: 15px; border-radius: 15px; font-size: 15px; line-height: 1.6; }
 
-        .gallery-item {
-            height: 150px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .gallery-item img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
-
-        @keyframes bounceIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .sparkle {
-            position: fixed;
-            z-index: -1;
-            opacity: 0.3;
-            pointer-events: none;
-        }
+        .heart-fly { position: fixed; pointer-events: none; animation: fly 1s linear forwards; z-index: 1000; }
+        @keyframes fly { to { transform: translateY(-100px) scale(1.5); opacity: 0; } }
     </style>
 </head>
-<body>
+<body onclick="spawnHeart(event)">
 
+<!-- Password Modal -->
 <div class="password-modal" id="passwordModal">
     <div class="password-content">
         <h2>Hey Bestie! ✨</h2>
-        <p style="font-size: 14px; margin-bottom: 15px; color: #888;">Enter our secret code</p>
         <input type="password" class="password-input" id="passwordInput" placeholder="Our secret...">
         <button class="submit-btn" id="submitPassword">Open</button>
     </div>
 </div>
 
+<!-- Welcome Screen (RESTORED EXACTLY) -->
 <div class="welcome-screen" id="welcomeScreen" style="display: none;">
     <h1 class="welcome-message">Welcome Saliha 💖 and enjoy. You are the best friend ever! ✨</h1>
 </div>
 
+<!-- Main Content -->
 <div class="container" id="mainContent" style="display: none;">
     <div class="tabs">
-        <button class="tab active" data-tab="letter-tab">✉️ Letter</button>
-        <button class="tab" data-tab="music-tab">🎵 Vibes</button>
-        <button class="tab" data-tab="notes-tab">📝 Notes</button>
-        <button class="tab" data-tab="gallery-tab">🌷 Flowers</button>
+        <button class="tab active" data-tab="letter-tab">✉️<span>Letter</span></button>
+        <button class="tab" data-tab="music-tab">🎵<span>Vibes</span></button>
+        <button class="tab" data-tab="notes-tab">📝<span>Notes</span></button>
+        <button class="tab" data-tab="magic-tab">✨<span>Magic</span></button>
+        <button class="tab" data-tab="goals-tab">🎯<span>Goals</span></button>
+        <button class="tab" data-tab="gallery-tab">🌷<span>Flowers</span></button>
     </div>
 
     <div class="content-area">
+        <!-- 1. Letter (RESTORED EXACTLY) -->
         <div class="tab-content active" id="letter-tab">
             <h2>For My Friend</h2>
             <div class="letter">
@@ -315,17 +132,16 @@
             </div>
         </div>
 
+        <!-- 2. Music (RESTORED + ADD) -->
         <div class="tab-content" id="music-tab">
             <h2>Our Music</h2>
-
             <div class="add-box">
                 <input type="text" id="mTitle" class="form-input" placeholder="Song title...">
-                <label for="mFile" class="file-btn">📁 Select MP3 File</label>
+                <label for="mFile" class="file-btn">📁 Select Music File</label>
                 <input type="file" id="mFile" accept="audio/*" style="display:none">
-                <button class="action-btn" id="addM">Save to Vibes ✨</button>
+                <button class="action-btn" id="addM">Add to Vibes ✨</button>
             </div>
-
-            <div id="defaultMusic">
+            <div id="staticMusic">
                 <div class="song-card">
                     <div class="song-info"><h4>Favorite Song 1</h4><p>Artist Name</p></div>
                     <audio controls src="music1.mp3"></audio>
@@ -338,13 +154,14 @@
             <div id="userMusic"></div>
         </div>
 
+        <!-- 3. Notes (RESTORED + ADD) -->
         <div class="tab-content" id="notes-tab">
             <h2>Reminders</h2>
             <div class="add-box">
-                <input type="text" id="nText" class="form-input" placeholder="Write something...">
+                <input type="text" id="nText" class="form-input" placeholder="Type a new note...">
                 <button class="action-btn" id="addN">Save Note 📝</button>
             </div>
-            <div id="defaultNotes">
+            <div id="staticNotes">
                 <div class="note">✨ Saliha, don't forget to take a break today!</div>
                 <div class="note">🌟 You're doing a great job, keep going.</div>
                 <div class="note">🥤 Stay hydrated and eat well!</div>
@@ -353,6 +170,26 @@
             <div id="userNotes"></div>
         </div>
 
+        <!-- 4. Magic Box -->
+        <div class="tab-content" id="magic-tab">
+            <h2>Magic Box</h2>
+            <div class="magic-card" id="magicBox">
+                <div style="font-size: 50px;">🎁</div>
+                <div id="magicText">Tap to see a surprise...</div>
+            </div>
+        </div>
+
+        <!-- 5. Goals -->
+        <div class="tab-content" id="goals-tab">
+            <h2>Our Bucket List</h2>
+            <div class="add-box">
+                <input type="text" id="gText" class="form-input" placeholder="Something to do together...">
+                <button class="action-btn" id="addG">Add to List 🎯</button>
+            </div>
+            <div id="userGoals"></div>
+        </div>
+
+        <!-- 6. Gallery (RESTORED ALL 4) -->
         <div class="tab-content" id="gallery-tab">
             <h2>Flowers for Saliha</h2>
             <div class="gallery">
@@ -366,38 +203,30 @@
 </div>
 
 <script>
-    // --- BAZA (DATABASE) LOGIKASI ---
     let db;
-    const request = indexedDB.open("BestieDB", 1);
-
-    request.onupgradeneeded = (e) => {
+    const request = indexedDB.open("SalihaFinalDB", 1);
+    request.onupgradeneeded = e => {
         db = e.target.result;
-        if(!db.objectStoreNames.contains("songs")) db.createObjectStore("songs", { keyPath: "id", autoIncrement: true });
-        if(!db.objectStoreNames.contains("notes")) db.createObjectStore("notes", { keyPath: "id", autoIncrement: true });
+        db.createObjectStore("songs", { keyPath: "id", autoIncrement: true });
+        db.createObjectStore("notes", { keyPath: "id", autoIncrement: true });
+        db.createObjectStore("goals", { keyPath: "id", autoIncrement: true });
     };
+    request.onsuccess = e => { db = e.target.result; loadFromDB(); };
 
-    request.onsuccess = (e) => {
-        db = e.target.result;
-        displayStoredItems();
-    };
-
-    // --- PASSWORD & TABS ---
-    const pInput = document.getElementById('passwordInput');
+    // Password Logic
     document.getElementById('submitPassword').onclick = () => {
-        if(pInput.value === 'gogoGAGA') {
+        if(document.getElementById('passwordInput').value === 'gogoGAGA') {
             document.getElementById('passwordModal').style.display = 'none';
-            const welcome = document.getElementById('welcomeScreen');
-            welcome.style.display = 'flex';
+            const ws = document.getElementById('welcomeScreen');
+            ws.style.display = 'flex';
             setTimeout(() => {
-                welcome.style.opacity = '0';
-                setTimeout(() => {
-                    welcome.style.display = 'none';
-                    document.getElementById('mainContent').style.display = 'block';
-                }, 800);
+                ws.style.opacity = '0';
+                setTimeout(() => { ws.style.display = 'none'; document.getElementById('mainContent').style.display = 'block'; }, 800);
             }, 2000);
         }
     };
 
+    // Tabs
     document.querySelectorAll('.tab').forEach(t => {
         t.onclick = () => {
             document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
@@ -407,86 +236,95 @@
         };
     });
 
-    // --- NOTES LOGIKASI ---
+    // Magic Box
+    const msgs = ["You are amazing! ✨", "Bestie forever! 💖", "Keep smiling! 😊", "You are special! 🌟", "So lucky to have you! 🍀"];
+    document.getElementById('magicBox').onclick = function() {
+        document.getElementById('magicText').innerText = msgs[Math.floor(Math.random()*msgs.length)];
+    };
+
+    // DB Rendering
+    function loadFromDB() {
+        db.transaction("songs").objectStore("songs").openCursor().onsuccess = e => {
+            const c = e.target.result; if(c) { renderSong(c.value); c.continue(); }
+        };
+        db.transaction("notes").objectStore("notes").openCursor().onsuccess = e => {
+            const c = e.target.result; if(c) { renderNote(c.value); c.continue(); }
+        };
+        db.transaction("goals").objectStore("goals").openCursor().onsuccess = e => {
+            const c = e.target.result; if(c) { renderGoal(c.value); c.continue(); }
+        };
+    }
+
+    // Add Functions
     document.getElementById('addN').onclick = () => {
-        const text = document.getElementById('nText').value;
-        if(!text) return;
-        const tx = db.transaction(["notes"], "readwrite");
-        tx.objectStore("notes").add({text: text}).onsuccess = (e) => {
-            renderNote({id: e.target.result, text: text});
+        const txt = document.getElementById('nText').value; if(!txt) return;
+        db.transaction("notes", "readwrite").objectStore("notes").add({text: txt}).onsuccess = e => {
+            renderNote({id: e.target.result, text: txt});
             document.getElementById('nText').value = '';
         };
     };
 
-    function renderNote(obj) {
-        const div = document.createElement('div');
-        div.className = 'note';
-        div.innerHTML = `🌸 ${obj.text} <button class="del-item">×</button>`;
-        div.querySelector('.del-item').onclick = () => {
-            db.transaction(["notes"], "readwrite").objectStore("notes").delete(obj.id);
-            div.remove();
+    document.getElementById('addG').onclick = () => {
+        const txt = document.getElementById('gText').value; if(!txt) return;
+        db.transaction("goals", "readwrite").objectStore("goals").add({text: txt, done: false}).onsuccess = e => {
+            renderGoal({id: e.target.result, text: txt, done: false});
+            document.getElementById('gText').value = '';
         };
-        document.getElementById('userNotes').prepend(div);
-    }
+    };
 
-    // --- MUSIC LOGIKASI (Haqiqiy faylni bazaga saqlash) ---
     document.getElementById('addM').onclick = () => {
-        const title = document.getElementById('mTitle').value;
-        const file = document.getElementById('mFile').files[0];
-        if(!title || !file) return alert("Fayl tanlang!");
-
+        const tit = document.getElementById('mTitle').value;
+        const fil = document.getElementById('mFile').files[0];
+        if(!tit || !fil) return;
         const reader = new FileReader();
-        reader.onload = (e) => {
-            const blob = new Blob([e.target.result], {type: file.type});
-            const tx = db.transaction(["songs"], "readwrite");
-            tx.objectStore("songs").add({title: title, data: blob}).onsuccess = (ev) => {
-                renderSong({id: ev.target.result, title: title, data: blob});
+        reader.onload = e => {
+            const blob = new Blob([e.target.result], {type: fil.type});
+            db.transaction("songs", "readwrite").objectStore("songs").add({title: tit, data: blob}).onsuccess = ev => {
+                renderSong({id: ev.target.result, title: tit, data: blob});
                 document.getElementById('mTitle').value = '';
                 document.getElementById('mFile').value = '';
             };
         };
-        reader.readAsArrayBuffer(file);
+        reader.readAsArrayBuffer(fil);
     };
 
-    function renderSong(obj) {
-        const url = URL.createObjectURL(obj.data);
-        const div = document.createElement('div');
-        div.className = 'song-card';
-        div.innerHTML = `
-            <div class="song-info"><h4>${obj.title}</h4><p>Added Vibe</p></div>
-            <button class="del-item">×</button>
-            <audio controls src="${url}"></audio>
-        `;
-        div.querySelector('.del-item').onclick = () => {
-            db.transaction(["songs"], "readwrite").objectStore("songs").delete(obj.id);
-            div.remove();
+    function renderNote(o) {
+        const d = document.createElement('div'); d.className = 'note';
+        d.innerHTML = `🌸 ${o.text} <button class="del-btn">×</button>`;
+        d.querySelector('.del-btn').onclick = () => {
+            db.transaction("notes", "readwrite").objectStore("notes").delete(o.id); d.remove();
         };
-        document.getElementById('userMusic').prepend(div);
+        document.getElementById('userNotes').prepend(d);
     }
 
-    function displayStoredItems() {
-        db.transaction("notes").objectStore("notes").openCursor().onsuccess = e => {
-            const cursor = e.target.result;
-            if(cursor) { renderNote(cursor.value); cursor.continue(); }
+    function renderGoal(o) {
+        const d = document.createElement('div'); d.className = `goal-item ${o.done ? 'done' : ''}`;
+        d.innerHTML = `<input type="checkbox" ${o.done?'checked':''}> <span>${o.text}</span> <button class="del-btn">×</button>`;
+        d.querySelector('input').onclick = (e) => {
+            o.done = e.target.checked; d.classList.toggle('done');
+            db.transaction("goals", "readwrite").objectStore("goals").put(o);
         };
-        db.transaction("songs").objectStore("songs").openCursor().onsuccess = e => {
-            const cursor = e.target.result;
-            if(cursor) { renderSong(cursor.value); cursor.continue(); }
+        d.querySelector('.del-btn').onclick = () => {
+            db.transaction("goals", "readwrite").objectStore("goals").delete(o.id); d.remove();
         };
+        document.getElementById('userGoals').prepend(d);
     }
 
-    function createDeco() {
-        const icons = ['✨', '🌸', '⭐'];
-        for (let i = 0; i < 15; i++) {
-            const span = document.createElement('span');
-            span.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-            span.className = 'sparkle';
-            span.style.left = Math.random() * 100 + 'vw';
-            span.style.top = Math.random() * 100 + 'vh';
-            document.body.appendChild(span);
-        }
+    function renderSong(o) {
+        const u = URL.createObjectURL(o.data);
+        const d = document.createElement('div'); d.className = 'song-card';
+        d.innerHTML = `<div class="song-info"><h4>${o.title}</h4><p>Added Vibe</p></div><button class="del-btn">×</button><audio controls src="${u}"></audio>`;
+        d.querySelector('.del-btn').onclick = () => {
+            db.transaction("songs", "readwrite").objectStore("songs").delete(o.id); d.remove();
+        };
+        document.getElementById('userMusic').prepend(d);
     }
-    createDeco();
+
+    function spawnHeart(e) {
+        const h = document.createElement('div'); h.innerHTML = '💖'; h.className = 'heart-fly';
+        h.style.left = e.clientX + 'px'; h.style.top = e.clientY + 'px';
+        document.body.appendChild(h); setTimeout(() => h.remove(), 1000);
+    }
 </script>
 </body>
 </html>
