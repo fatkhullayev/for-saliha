@@ -37,25 +37,21 @@
         .welcome-message { font-family: 'Dancing Script', cursive; font-size: 32px; color: #ad1457; text-align: center; padding: 20px; }
 
         /* Main Container */
-        .container { width: 100%; max-width: 450px; padding: 15px; margin-top: 10px; margin-bottom: 50px; }
+        .container { width: 100%; max-width: 450px; padding: 15px; margin-top: 5px; margin-bottom: 50px; }
 
-        /* TABS FIXED */
         .tabs {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 15px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 15px;
         }
         .tab {
             background: white; border: none; padding: 10px 2px; border-radius: 12px;
-            font-size: 10px; font-weight: 600; color: #ad1457;
+            font-size: 9px; font-weight: 600; color: #ad1457;
             display: flex; flex-direction: column; align-items: center; gap: 4px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
         .tab.active { background: #ad1457; color: white; }
-        .tab span { font-size: 14px; }
+        .tab span { font-size: 16px; }
 
-        .content-area { background: white; border-radius: 25px; padding: 20px; min-height: 500px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .content-area { background: white; border-radius: 25px; padding: 20px; min-height: 520px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
         .tab-content { display: none; animation: fadeIn 0.5s ease; }
         .tab-content.active { display: block; }
 
@@ -64,44 +60,44 @@
         /* Forms */
         .add-box { background: #fff5f8; padding: 12px; border-radius: 15px; margin-bottom: 15px; border: 1px dashed #f48fb1; }
         .form-input { width: 100%; padding: 10px; border: 1px solid #f8bbd0; border-radius: 10px; margin-bottom: 10px; outline: none; font-size: 14px; }
-        .file-btn { display: block; background: #f06292; color: white; padding: 10px; border-radius: 10px; text-align: center; cursor: pointer; font-size: 12px; margin-bottom: 10px; }
         .action-btn { width: 100%; background: #ad1457; color: white; border: none; padding: 10px; border-radius: 10px; font-weight: 600; cursor: pointer; }
 
-        /* List items */
+        /* List Items */
         .song-card, .note, .goal-item { background: #fdf2f5; padding: 12px; border-radius: 15px; margin-bottom: 10px; position: relative; }
-        .song-info h4 { font-size: 15px; }
-        audio { width: 100%; height: 35px; margin-top: 5px; }
+        audio { width: 100%; height: 35px; }
         .del-btn { position: absolute; right: 10px; top: 10px; background: none; border: none; color: #ad1457; font-weight: bold; font-size: 20px; }
-        .note { border-left: 5px solid #ad1457; font-size: 14px; padding-right: 30px; }
-        .goal-item { display: flex; align-items: center; gap: 8px; font-size: 14px; }
-        .goal-item.done span { text-decoration: line-through; opacity: 0.6; }
+        .note { border-left: 5px solid #ad1457; font-size: 14px; }
+        .goal-item { display: flex; align-items: center; gap: 10px; }
+        .goal-item.done span { text-decoration: line-through; opacity: 0.5; }
 
         /* Magic Box */
         .magic-card {
             background: linear-gradient(135deg, #f06292, #ad1457);
-            color: white; padding: 25px 15px; border-radius: 20px; text-align: center; cursor: pointer;
+            color: white; padding: 30px 15px; border-radius: 20px; text-align: center; cursor: pointer;
         }
-        #magicText { font-family: 'Dancing Script', cursive; font-size: 20px; margin-top: 10px; }
+        #magicText { font-family: 'Dancing Script', cursive; font-size: 22px; margin-top: 15px; min-height: 50px; }
 
-        /* Tic-Tac-Toe Game Improved */
-        .game-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .mode-btn { background: #fce4ec; border: 1px solid #f8bbd0; padding: 5px 10px; border-radius: 8px; font-size: 12px; color: #ad1457; cursor: pointer; }
-        .mode-btn.active { background: #ad1457; color: white; }
-        .game-status { text-align: center; margin-bottom: 10px; font-weight: 600; color: #ad1457; }
+        /* Game Styles */
         .ttt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 220px; margin: 0 auto; }
         .ttt-cell { width: 68px; height: 68px; background: #fdf2f5; border: 2px solid #f8bbd0; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; }
 
-        /* Gallery */
+        /* Sketchpad Styles */
+        #canvasContainer { border: 2px solid #fce4ec; border-radius: 15px; overflow: hidden; background: #fff; touch-action: none; margin-bottom: 10px; }
+        canvas { display: block; width: 100%; height: 320px; }
+        .color-palette { display: flex; gap: 6px; margin: 10px 0; justify-content: center; flex-wrap: wrap; }
+        .color-circle { width: 25px; height: 25px; border-radius: 50%; border: 2px solid #fff; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .color-circle.active { border-color: #5d4037; transform: scale(1.1); }
+
+        /* Static Original Content */
+        .letter { background: #fffafa; border: 1px solid #f8bbd0; padding: 15px; border-radius: 15px; font-size: 14px; line-height: 1.6; }
         .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .gallery-item { height: 110px; border-radius: 12px; overflow: hidden; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        .letter { background: #fffafa; border: 1px solid #f8bbd0; padding: 15px; border-radius: 15px; font-size: 14px; line-height: 1.6; }
-
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes bounceIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         .heart-fly { position: fixed; pointer-events: none; animation: fly 1s linear forwards; z-index: 1000; font-size: 20px; }
         @keyframes fly { to { transform: translateY(-100px) scale(1.5); opacity: 0; } }
-        @keyframes bounceIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body onclick="spawnHeart(event)">
@@ -126,6 +122,7 @@
         <button class="tab" data-tab="magic-tab"><span>✨</span>Magic</button>
         <button class="tab" data-tab="goals-tab"><span>🎯</span>Goals</button>
         <button class="tab" data-tab="game-tab"><span>🎮</span>Game</button>
+        <button class="tab" data-tab="sketch-tab"><span>🎨</span>Sketch</button>
         <button class="tab" data-tab="gallery-tab"><span>🌷</span>Flowers</button>
     </div>
 
@@ -135,7 +132,7 @@
             <div class="letter">
                 <p>Dear Saliha,</p><br>
                 <p>I just wanted to make this small space for you to remind you how amazing you are as a friend. Life is much better with you around!</p>
-                <p>Thank you for all the support, the laughs, and for being Bunday shirin do'st. You deserve barcha baxtni!</p><br>
+                <p>Thank you for all the support, the laughs, and for being bunday shirin do'st. You deserve barcha baxtni!</p><br>
                 <p>Always stay as awesome as you are today!</p>
                 <p>Best regards, <br> Your Best Friend</p>
             </div>
@@ -145,19 +142,13 @@
             <h2>Our Music</h2>
             <div class="add-box">
                 <input type="text" id="mTitle" class="form-input" placeholder="Song title...">
-                <label for="mFile" class="file-btn">📁 Choose Music</label>
+                <label for="mFile" style="display:block; background:#f06292; color:white; padding:8px; border-radius:10px; text-align:center; cursor:pointer; font-size:12px; margin-bottom:10px;">📁 Choose MP3</label>
                 <input type="file" id="mFile" accept="audio/*" style="display:none">
                 <button class="action-btn" id="addM">Add Music ✨</button>
             </div>
             <div id="staticMusic">
-                <div class="song-card">
-                    <div class="song-info"><h4>Favorite Song 1</h4><p>Artist Name</p></div>
-                    <audio controls src="music1.mp3"></audio>
-                </div>
-                <div class="song-card">
-                    <div class="song-info"><h4>Favorite Song 2</h4><p>Artist Name</p></div>
-                    <audio controls src="music2.mp3"></audio>
-                </div>
+                <div class="song-card"><h4>Favorite Song 1</h4><audio controls src="music1.mp3"></audio></div>
+                <div class="song-card"><h4>Favorite Song 2</h4><audio controls src="music2.mp3"></audio></div>
             </div>
             <div id="userMusic"></div>
         </div>
@@ -180,15 +171,15 @@
         <div class="tab-content" id="magic-tab">
             <h2>Magic Box</h2>
             <div class="magic-card" id="magicBox">
-                <div style="font-size: 40px;">🎁</div>
-                <div id="magicText">Tap to see a surprise...</div>
+                <div style="font-size: 45px;">🎁</div>
+                <div id="magicText">Tap to open...</div>
             </div>
         </div>
 
         <div class="tab-content" id="goals-tab">
             <h2>Our Bucket List</h2>
             <div class="add-box">
-                <input type="text" id="gText" class="form-input" placeholder="Something to do...">
+                <input type="text" id="gText" class="form-input" placeholder="Future goal...">
                 <button class="action-btn" id="addG">Add Goal 🎯</button>
             </div>
             <div id="userGoals"></div>
@@ -196,23 +187,40 @@
 
         <div class="tab-content" id="game-tab">
             <h2>Tic-Tac-Toe</h2>
-            <div class="game-controls">
-                <button class="mode-btn active" id="pvpBtn">Vs Friend</button>
-                <button class="mode-btn" id="pvcBtn">Vs Robot (Hard)</button>
+            <div style="display:flex; justify-content:center; gap:10px; margin-bottom:15px;">
+                <button id="pvcBtn" style="padding:5px 10px; border-radius:8px; border:1px solid #ad1457; background:#ad1457; color:white; font-size: 12px;">Vs Robot</button>
+                <button id="pvpBtn" style="padding:5px 10px; border-radius:8px; border:1px solid #ad1457; background:white; color:#ad1457; font-size: 12px;">Vs Friend</button>
             </div>
-            <div class="game-status" id="gameStatus">Your turn (💖)</div>
+            <div id="gameStatus" style="text-align:center; margin-bottom:10px; font-weight:600; color:#ad1457;">Your turn (💖)</div>
             <div class="ttt-grid" id="tttGrid">
-                <div class="ttt-cell" data-index="0"></div>
-                <div class="ttt-cell" data-index="1"></div>
-                <div class="ttt-cell" data-index="2"></div>
-                <div class="ttt-cell" data-index="3"></div>
-                <div class="ttt-cell" data-index="4"></div>
-                <div class="ttt-cell" data-index="5"></div>
-                <div class="ttt-cell" data-index="6"></div>
-                <div class="ttt-cell" data-index="7"></div>
-                <div class="ttt-cell" data-index="8"></div>
+                <div class="ttt-cell" data-index="0"></div><div class="ttt-cell" data-index="1"></div><div class="ttt-cell" data-index="2"></div>
+                <div class="ttt-cell" data-index="3"></div><div class="ttt-cell" data-index="4"></div><div class="ttt-cell" data-index="5"></div>
+                <div class="ttt-cell" data-index="6"></div><div class="ttt-cell" data-index="7"></div><div class="ttt-cell" data-index="8"></div>
             </div>
             <button class="action-btn" id="resetGame" style="margin-top:20px; width:100px; margin-inline:auto; display:block;">Reset</button>
+        </div>
+
+        <div class="tab-content" id="sketch-tab">
+            <h2>Mini Sketchpad</h2>
+            <div style="display:flex; justify-content:center; gap:10px; margin-bottom:10px;">
+                <button id="penBtn" style="background:#ad1457; color:white; padding:5px 15px; border-radius:8px; border:none; font-size:12px;">✏️ Pen</button>
+                <button id="eraserBtn" style="background:#eee; padding:5px 15px; border-radius:8px; border:none; font-size:12px;">🧽 Eraser</button>
+            </div>
+            <div class="color-palette" id="palette">
+                <div class="color-circle active" style="background:#ad1457" data-color="#ad1457"></div>
+                <div class="color-circle" style="background:#ff4081" data-color="#ff4081"></div>
+                <div class="color-circle" style="background:#9c27b0" data-color="#9c27b0"></div>
+                <div class="color-circle" style="background:#2196f3" data-color="#2196f3"></div>
+                <div class="color-circle" style="background:#4caf50" data-color="#4caf50"></div>
+                <div class="color-circle" style="background:#ffeb3b" data-color="#ffeb3b"></div>
+                <div class="color-circle" style="background:#ff9800" data-color="#ff9800"></div>
+                <div class="color-circle" style="background:#000000" data-color="#000000"></div>
+            </div>
+            <div id="canvasContainer"><canvas id="canvas"></canvas></div>
+            <div style="display:flex; gap:10px;">
+                <button class="action-btn" id="clearCanvas" style="background:#888;">Clear</button>
+                <button class="action-btn" id="saveCanvas">Save</button>
+            </div>
         </div>
 
         <div class="tab-content" id="gallery-tab">
@@ -229,182 +237,210 @@
 
 <script>
     let db;
-    const request = indexedDB.open("SalihaFinalFixDB", 1);
-    request.onupgradeneeded = e => {
+    const req = indexedDB.open("SalihaFinalMegaDB", 1);
+    req.onupgradeneeded = e => {
         db = e.target.result;
         db.createObjectStore("songs", { keyPath: "id", autoIncrement: true });
         db.createObjectStore("notes", { keyPath: "id", autoIncrement: true });
         db.createObjectStore("goals", { keyPath: "id", autoIncrement: true });
     };
-    request.onsuccess = e => { db = e.target.result; loadFromDB(); };
+    req.onsuccess = e => { db = e.target.result; loadDB(); };
 
-    document.getElementById('submitPassword').onclick = () => {
-        if(document.getElementById('passwordInput').value === 'gogoGAGA') {
-            document.getElementById('passwordModal').style.display = 'none';
-            const ws = document.getElementById('welcomeScreen');
-            ws.style.display = 'flex';
-            setTimeout(() => {
-                ws.style.opacity = '0';
-                setTimeout(() => { ws.style.display = 'none'; document.getElementById('mainContent').style.display = 'block'; }, 800);
-            }, 2000);
-        }
-    };
-
+    // --- TAB SYSTEM ---
     document.querySelectorAll('.tab').forEach(t => {
         t.onclick = () => {
             document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
             t.classList.add('active');
             document.getElementById(t.dataset.tab).classList.add('active');
+            if(t.dataset.tab === 'sketch-tab') resizeCanvas();
         };
     });
 
-    const msgs = ["You are amazing! ✨", "Bestie forever! 💖", "Keep smiling! 😊", "You are special! 🌟", "You are the best! 🌸"];
-    document.getElementById('magicBox').onclick = () => {
-        document.getElementById('magicText').innerText = msgs[Math.floor(Math.random()*msgs.length)];
+    // --- PASSWORD ---
+    document.getElementById('submitPassword').onclick = () => {
+        if(document.getElementById('passwordInput').value === 'gogoGAGA') {
+            document.getElementById('passwordModal').style.display = 'none';
+            document.getElementById('welcomeScreen').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('welcomeScreen').style.opacity = '0';
+                setTimeout(() => { document.getElementById('welcomeScreen').style.display = 'none'; document.getElementById('mainContent').style.display = 'block'; }, 800);
+            }, 2000);
+        }
     };
 
-    // --- GAME LOGIC (UNBEATABLE AI) ---
-    let board = ["", "", "", "", "", "", "", "", ""];
-    let currentPlayer = "💖";
+    // --- MAGIC BOX ---
+    const msgs = ["You are amazing! ✨", "Bestie forever! 💖", "Keep smiling! 😊", "You are the best! 🌸", "Stay awesome! 🌟"];
+    document.getElementById('magicBox').onclick = () => { document.getElementById('magicText').innerText = msgs[Math.floor(Math.random()*msgs.length)]; };
+
+    // --- GAME LOGIC (FIXED PvP & PvC) ---
+    let b = ["","","","","","","","",""];
     let gameActive = true;
-    let vsRobot = false;
+    let isRobotMode = true;
+    let currentPlayer = "💖";
     const cells = document.querySelectorAll('.ttt-cell');
-    const statusText = document.getElementById('gameStatus');
+    const gameStatus = document.getElementById('gameStatus');
 
-    document.getElementById('pvpBtn').onclick = () => { vsRobot = false; resetBoard(); document.getElementById('pvpBtn').classList.add('active'); document.getElementById('pvcBtn').classList.remove('active'); };
-    document.getElementById('pvcBtn').onclick = () => { vsRobot = true; resetBoard(); document.getElementById('pvcBtn').classList.add('active'); document.getElementById('pvpBtn').classList.remove('active'); };
+    function resetG() {
+        b = ["","","","","","","","",""];
+        gameActive = true;
+        currentPlayer = "💖";
+        cells.forEach(c => c.innerText = "");
+        gameStatus.innerText = "Your turn (💖)";
+    }
 
-    cells.forEach(cell => cell.onclick = (e) => {
-        const idx = e.target.dataset.index;
-        if(board[idx] !== "" || !gameActive) return;
+    document.getElementById('pvcBtn').onclick = () => {
+        isRobotMode = true; resetG();
+        document.getElementById('pvcBtn').style.background = '#ad1457'; document.getElementById('pvcBtn').style.color='#fff';
+        document.getElementById('pvpBtn').style.background='#fff'; document.getElementById('pvpBtn').style.color='#ad1457';
+    };
+    document.getElementById('pvpBtn').onclick = () => {
+        isRobotMode = false; resetG();
+        document.getElementById('pvpBtn').style.background = '#ad1457'; document.getElementById('pvpBtn').style.color='#fff';
+        document.getElementById('pvcBtn').style.background='#fff'; document.getElementById('pvcBtn').style.color='#ad1457';
+    };
 
-        board[idx] = currentPlayer;
-        e.target.innerText = currentPlayer;
+    cells.forEach(cell => {
+        cell.onclick = () => {
+            const i = cell.dataset.index;
+            if (b[i] !== "" || !gameActive) return;
 
-        if(checkWin(board, currentPlayer)) {
-            statusText.innerText = currentPlayer + " Wins! 🎉";
-            gameActive = false;
-        } else if(board.every(s => s !== "")) {
-            statusText.innerText = "Draw! 🤝";
-            gameActive = false;
-        } else {
-            currentPlayer = currentPlayer === "💖" ? "⭐" : "💖";
-            statusText.innerText = currentPlayer + "'s turn";
-            if(vsRobot && currentPlayer === "⭐") {
-                setTimeout(robotMove, 500);
+            // Player Turn
+            makeMove(i, currentPlayer);
+
+            if (gameActive) {
+                if (isRobotMode) {
+                    currentPlayer = "⭐";
+                    gameStatus.innerText = "Robot is thinking...";
+                    setTimeout(aiPlay, 500);
+                } else {
+                    currentPlayer = (currentPlayer === "💖") ? "⭐" : "💖";
+                    gameStatus.innerText = (currentPlayer === "💖" ? "Your" : "Friend's") + " turn (" + currentPlayer + ")";
+                }
             }
-        }
+        };
     });
 
-    function robotMove() {
-        const bestMove = minimax(board, "⭐").index;
-        board[bestMove] = "⭐";
-        cells[bestMove].innerText = "⭐";
-        if(checkWin(board, "⭐")) {
-            statusText.innerText = "Robot Wins! ⭐";
+    function makeMove(index, player) {
+        b[index] = player;
+        cells[index].innerText = player;
+        if (checkWin(b, player)) {
+            gameStatus.innerText = (player === "💖" ? (isRobotMode ? "You Win! 🎉" : "Player 1 Wins! 💖") : (isRobotMode ? "Robot Wins! ⭐" : "Player 2 Wins! ⭐"));
             gameActive = false;
-        } else if(board.every(s => s !== "")) {
-            statusText.innerText = "Draw! 🤝";
+        } else if (b.every(cell => cell !== "")) {
+            gameStatus.innerText = "Draw! 🤝";
             gameActive = false;
-        } else {
+        }
+    }
+
+    function aiPlay() {
+        if (!gameActive) return;
+        const bestMove = minimax(b, "⭐").index;
+        makeMove(bestMove, "⭐");
+        if (gameActive) {
             currentPlayer = "💖";
-            statusText.innerText = "Your turn (💖)";
+            gameStatus.innerText = "Your turn (💖)";
         }
     }
 
     function minimax(newBoard, player) {
-        const availSpots = newBoard.map((s, i) => s === "" ? i : null).filter(i => i !== null);
-        if(checkWin(newBoard, "💖")) return {score: -10};
-        if(checkWin(newBoard, "⭐")) return {score: 10};
-        if(availSpots.length === 0) return {score: 0};
+        const availSpots = newBoard.map((v, i) => v === "" ? i : null).filter(i => i !== null);
+        if (checkWin(newBoard, "💖")) return { score: -10 };
+        if (checkWin(newBoard, "⭐")) return { score: 10 };
+        if (availSpots.length === 0) return { score: 0 };
 
         const moves = [];
-        for(let i=0; i<availSpots.length; i++) {
-            const move = {};
-            move.index = availSpots[i];
+        for (let i = 0; i < availSpots.length; i++) {
+            const move = { index: availSpots[i] };
             newBoard[availSpots[i]] = player;
-            if(player === "⭐") move.score = minimax(newBoard, "💖").score;
-            else move.score = minimax(newBoard, "⭐").score;
+            move.score = minimax(newBoard, player === "⭐" ? "💖" : "⭐").score;
             newBoard[availSpots[i]] = "";
             moves.push(move);
         }
 
         let bestMove;
-        if(player === "⭐") {
+        if (player === "⭐") {
             let bestScore = -10000;
-            for(let i=0; i<moves.length; i++) {
-                if(moves[i].score > bestScore) { bestScore = moves[i].score; bestMove = i; }
-            }
+            moves.forEach((m, i) => { if (m.score > bestScore) { bestScore = m.score; bestMove = i; } });
         } else {
             let bestScore = 10000;
-            for(let i=0; i<moves.length; i++) {
-                if(moves[i].score < bestScore) { bestScore = moves[i].score; bestMove = i; }
-            }
+            moves.forEach((m, i) => { if (m.score < bestScore) { bestScore = m.score; bestMove = i; } });
         }
         return moves[bestMove];
     }
 
-    function checkWin(b, p) {
-        const win = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-        return win.some(s => s.every(i => b[i] === p));
+    function checkWin(board, p) {
+        const lines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+        return lines.some(l => l.every(i => board[i] === p));
     }
+    document.getElementById('resetGame').onclick = resetG;
 
-    function resetBoard() {
-        board = ["", "", "", "", "", "", "", "", ""];
-        gameActive = true; currentPlayer = "💖";
-        cells.forEach(c => c.innerText = "");
-        statusText.innerText = "Your turn (💖)";
+    // --- SKETCHPAD ---
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false; let mode = 'pen'; let color = '#ad1457';
+    function resizeCanvas() {
+        const container = document.getElementById('canvasContainer');
+        canvas.width = container.offsetWidth; canvas.height = 320;
+        ctx.lineCap = 'round'; ctx.lineWidth = 4;
     }
-    document.getElementById('resetGame').onclick = resetBoard;
+    const start = e => { drawing = true; draw(e); };
+    const end = () => { drawing = false; ctx.beginPath(); };
+    const draw = e => {
+        if(!drawing) return;
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+        ctx.strokeStyle = mode === 'eraser' ? '#ffffff' : color;
+        ctx.lineWidth = mode === 'eraser' ? 25 : 4;
+        ctx.lineTo(x, y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x, y);
+    };
+    canvas.addEventListener('mousedown', start); canvas.addEventListener('mousemove', draw); window.addEventListener('mouseup', end);
+    canvas.addEventListener('touchstart', start); canvas.addEventListener('touchmove', draw); canvas.addEventListener('touchend', end);
+    document.getElementById('penBtn').onclick = () => { mode = 'pen'; document.getElementById('penBtn').style.background = '#ad1457'; document.getElementById('penBtn').style.color = '#fff'; document.getElementById('eraserBtn').style.background = '#eee'; document.getElementById('eraserBtn').style.color = '#000'; };
+    document.getElementById('eraserBtn').onclick = () => { mode = 'eraser'; document.getElementById('eraserBtn').style.background = '#ad1457'; document.getElementById('eraserBtn').style.color = '#fff'; document.getElementById('penBtn').style.background = '#eee'; document.getElementById('penBtn').style.color = '#000'; };
+    document.querySelectorAll('.color-circle').forEach(c => { c.onclick = () => { color = c.dataset.color; mode = 'pen'; document.querySelectorAll('.color-circle').forEach(x => x.classList.remove('active')); c.classList.add('active'); }; });
+    document.getElementById('clearCanvas').onclick = () => ctx.clearRect(0,0,canvas.width,canvas.height);
+    document.getElementById('saveCanvas').onclick = () => { const a = document.createElement('a'); a.href = canvas.toDataURL(); a.download = 'drawing.png'; a.click(); };
 
-    // --- DB Logic ---
-    function loadFromDB() {
-        db.transaction("songs").objectStore("songs").openCursor().onsuccess = e => { const c = e.target.result; if(c) { renderSong(c.value); c.continue(); } };
-        db.transaction("notes").objectStore("notes").openCursor().onsuccess = e => { const c = e.target.result; if(c) { renderNote(c.value); c.continue(); } };
-        db.transaction("goals").objectStore("goals").openCursor().onsuccess = e => { const c = e.target.result; if(c) { renderGoal(c.value); c.continue(); } };
+    // --- DATABASE ---
+    function loadDB() {
+        db.transaction("songs").objectStore("songs").openCursor().onsuccess = e => { const c = e.target.result; if(c) { renderS(c.value); c.continue(); } };
+        db.transaction("notes").objectStore("notes").openCursor().onsuccess = e => { const c = e.target.result; if(c) { renderN(c.value); c.continue(); } };
+        db.transaction("goals").objectStore("goals").openCursor().onsuccess = e => { const c = e.target.result; if(c) { renderG(c.value); c.continue(); } };
     }
-
     document.getElementById('addN').onclick = () => {
-        const txt = document.getElementById('nText').value; if(!txt) return;
-        db.transaction("notes", "readwrite").objectStore("notes").add({text: txt}).onsuccess = e => { renderNote({id: e.target.result, text: txt}); document.getElementById('nText').value = ''; };
+        const t = document.getElementById('nText').value; if(!t) return;
+        db.transaction("notes", "readwrite").objectStore("notes").add({text: t}).onsuccess = e => { renderN({id: e.target.result, text: t}); document.getElementById('nText').value = ''; };
     };
-
     document.getElementById('addG').onclick = () => {
-        const txt = document.getElementById('gText').value; if(!txt) return;
-        db.transaction("goals", "readwrite").objectStore("goals").add({text: txt, done: false}).onsuccess = e => { renderGoal({id: e.target.result, text: txt, done: false}); document.getElementById('gText').value = ''; };
+        const t = document.getElementById('gText').value; if(!t) return;
+        db.transaction("goals", "readwrite").objectStore("goals").add({text: t, done: false}).onsuccess = e => { renderG({id: e.target.result, text: t, done: false}); document.getElementById('gText').value = ''; };
     };
-
     document.getElementById('addM').onclick = () => {
-        const tit = document.getElementById('mTitle').value; const fil = document.getElementById('mFile').files[0];
-        if(!tit || !fil) return;
-        const reader = new FileReader();
-        reader.onload = e => {
-            const blob = new Blob([e.target.result], {type: fil.type});
-            db.transaction("songs", "readwrite").objectStore("songs").add({title: tit, data: blob}).onsuccess = ev => { renderSong({id: ev.target.result, title: tit, data: blob}); document.getElementById('mTitle').value = ''; document.getElementById('mFile').value = ''; };
-        };
-        reader.readAsArrayBuffer(fil);
+        const tit = document.getElementById('mTitle').value; const f = document.getElementById('mFile').files[0];
+        if(!tit || !f) return;
+        const r = new FileReader();
+        r.onload = e => { const b = new Blob([e.target.result], {type: f.type}); db.transaction("songs", "readwrite").objectStore("songs").add({title: tit, data: b}).onsuccess = ev => { renderS({id: ev.target.result, title: tit, data: b}); }; };
+        r.readAsArrayBuffer(f);
     };
-
-    function renderNote(o) {
+    function renderN(o) {
         const d = document.createElement('div'); d.className = 'note'; d.innerHTML = `🌸 ${o.text} <button class="del-btn">×</button>`;
         d.querySelector('.del-btn').onclick = () => { db.transaction("notes", "readwrite").objectStore("notes").delete(o.id); d.remove(); };
         document.getElementById('userNotes').prepend(d);
     }
-
-    function renderGoal(o) {
+    function renderG(o) {
         const d = document.createElement('div'); d.className = `goal-item ${o.done ? 'done' : ''}`; d.innerHTML = `<input type="checkbox" ${o.done?'checked':''}> <span>${o.text}</span> <button class="del-btn">×</button>`;
         d.querySelector('input').onclick = (e) => { o.done = e.target.checked; d.classList.toggle('done'); db.transaction("goals", "readwrite").objectStore("goals").put(o); };
         d.querySelector('.del-btn').onclick = () => { db.transaction("goals", "readwrite").objectStore("goals").delete(o.id); d.remove(); };
         document.getElementById('userGoals').prepend(d);
     }
-
-    function renderSong(o) {
-        const u = URL.createObjectURL(o.data); const d = document.createElement('div'); d.className = 'song-card'; d.innerHTML = `<div class="song-info"><h4>${o.title}</h4></div><button class="del-btn">×</button><audio controls src="${u}"></audio>`;
+    function renderS(o) {
+        const u = URL.createObjectURL(o.data); const d = document.createElement('div'); d.className = 'song-card'; d.innerHTML = `<h4>${o.title}</h4><button class="del-btn">×</button><audio controls src="${u}"></audio>`;
         d.querySelector('.del-btn').onclick = () => { db.transaction("songs", "readwrite").objectStore("songs").delete(o.id); d.remove(); };
         document.getElementById('userMusic').prepend(d);
     }
-
     function spawnHeart(e) {
         const h = document.createElement('div'); h.innerHTML = '💖'; h.className = 'heart-fly'; h.style.left = e.clientX + 'px'; h.style.top = e.clientY + 'px';
         document.body.appendChild(h); setTimeout(() => h.remove(), 1000);
