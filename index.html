@@ -107,7 +107,7 @@
         /* Main Content Container */
         .container {
             width: 100%;
-            max-width: 450px; /* iPhone uchun ideal kenglik */
+            max-width: 450px;
             padding: 15px;
             margin-top: 20px;
             margin-bottom: 50px;
@@ -175,24 +175,60 @@
             line-height: 1.6;
         }
 
-        /* Music Player Style */
+        /* --- ADD NEW ELEMENTS STYLES --- */
+        .add-box {
+            background: #fff5f8;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px dashed #f48fb1;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #f8bbd0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .file-btn {
+            display: block;
+            background: #f06292;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .action-btn {
+            width: 100%;
+            background: #ad1457;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        /* Music Card */
         .song-card {
             background: #fdf2f5;
             padding: 12px;
             border-radius: 15px;
             margin-bottom: 15px;
+            position: relative;
         }
 
-        .song-info h4 { font-size: 16px; margin-bottom: 5px; }
+        .song-info h4 { font-size: 16px; margin-bottom: 5px; padding-right: 30px; }
         .song-info p { font-size: 12px; color: #888; margin-bottom: 10px; }
 
-        audio {
-            width: 100%;
-            height: 35px;
-            border-radius: 10px;
-        }
+        audio { width: 100%; height: 35px; }
 
-        /* Notes Style */
         .note {
             background: #fce4ec;
             padding: 12px;
@@ -200,6 +236,20 @@
             margin-bottom: 10px;
             border-left: 5px solid #ad1457;
             font-size: 14px;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .del-item {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            color: #ad1457;
+            border: none;
+            background: none;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
         }
 
         /* Gallery Style */
@@ -219,18 +269,10 @@
             width: 100%; height: 100%; object-fit: cover;
         }
 
-        /* Animations */
-        @keyframes bounceIn {
-            0% { transform: scale(0.9); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        @keyframes bounceIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .heart, .sparkle {
+        .sparkle {
             position: fixed;
             z-index: -1;
             opacity: 0.3;
@@ -240,7 +282,6 @@
 </head>
 <body>
 
-<!-- Password Modal -->
 <div class="password-modal" id="passwordModal">
     <div class="password-content">
         <h2>Hey Bestie! ✨</h2>
@@ -250,12 +291,10 @@
     </div>
 </div>
 
-<!-- Welcome Screen -->
 <div class="welcome-screen" id="welcomeScreen" style="display: none;">
     <h1 class="welcome-message">Welcome Saliha 💖 and enjoy. You are the best friend ever! ✨</h1>
 </div>
 
-<!-- Main Content -->
 <div class="container" id="mainContent" style="display: none;">
     <div class="tabs">
         <button class="tab active" data-tab="letter-tab">✉️ Letter</button>
@@ -265,7 +304,6 @@
     </div>
 
     <div class="content-area">
-        <!-- Letter Tab -->
         <div class="tab-content active" id="letter-tab">
             <h2>For My Friend</h2>
             <div class="letter">
@@ -277,122 +315,178 @@
             </div>
         </div>
 
-        <!-- Music Tab -->
         <div class="tab-content" id="music-tab">
             <h2>Our Music</h2>
 
-            <!-- Song 1 -->
-            <div class="song-card">
-                <div class="song-info">
-                    <h4>Favorite Song 1</h4>
-                    <p>Artist Name</p>
-                </div>
-                <!-- Musiqa yo'lini (path) src="..." ga qo'ying -->
-                <audio controls>
-                    <source src="music1.mp3" type="audio/mpeg">
-                    Your browser does not support audio.
-                </audio>
+            <div class="add-box">
+                <input type="text" id="mTitle" class="form-input" placeholder="Song title...">
+                <label for="mFile" class="file-btn">📁 Select MP3 File</label>
+                <input type="file" id="mFile" accept="audio/*" style="display:none">
+                <button class="action-btn" id="addM">Save to Vibes ✨</button>
             </div>
 
-            <!-- Song 2 -->
-            <div class="song-card">
-                <div class="song-info">
-                    <h4>Favorite Song 2</h4>
-                    <p>Artist Name</p>
+            <div id="defaultMusic">
+                <div class="song-card">
+                    <div class="song-info"><h4>Favorite Song 1</h4><p>Artist Name</p></div>
+                    <audio controls src="music1.mp3"></audio>
                 </div>
-                <audio controls>
-                    <source src="music2.mp3" type="audio/mpeg">
-                    Your browser does not support audio.
-                </audio>
+                <div class="song-card">
+                    <div class="song-info"><h4>Favorite Song 2</h4><p>Artist Name</p></div>
+                    <audio controls src="music2.mp3"></audio>
+                </div>
             </div>
+            <div id="userMusic"></div>
         </div>
 
-        <!-- Notes Tab -->
         <div class="tab-content" id="notes-tab">
             <h2>Reminders</h2>
-            <div class="note">✨ Saliha, don't forget to take a break today!</div>
-            <div class="note">🌟 You're doing a great job, keep going.</div>
-            <div class="note">🥤 Stay hydrated and eat well!</div>
-            <div class="note">🌸 You are appreciated more than you know.</div>
+            <div class="add-box">
+                <input type="text" id="nText" class="form-input" placeholder="Write something...">
+                <button class="action-btn" id="addN">Save Note 📝</button>
+            </div>
+            <div id="defaultNotes">
+                <div class="note">✨ Saliha, don't forget to take a break today!</div>
+                <div class="note">🌟 You're doing a great job, keep going.</div>
+                <div class="note">🥤 Stay hydrated and eat well!</div>
+                <div class="note">🌸 You are appreciated more than you know.</div>
+            </div>
+            <div id="userNotes"></div>
         </div>
 
-        <!-- Gallery Tab -->
         <div class="tab-content" id="gallery-tab">
             <h2>Flowers for Saliha</h2>
             <div class="gallery">
-                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1eaad721-3375-4d97-a5fa-cbf8a87d60b8.png" alt="Flower"></div>
-                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/73632299-5dde-4ded-805a-88a7dcb4b5e4.png" alt="Flower"></div>
-                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e9890063-b481-46f6-97a1-9fc753211e19.png" alt="Flower"></div>
-                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4bc3dffd-4971-4223-b7e4-3699d2b97bbe.png" alt="Flower"></div>
+                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1eaad721-3375-4d97-a5fa-cbf8a87d60b8.png"></div>
+                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/73632299-5dde-4ded-805a-88a7dcb4b5e4.png"></div>
+                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e9890063-b481-46f6-97a1-9fc753211e19.png"></div>
+                <div class="gallery-item"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4bc3dffd-4971-4223-b7e4-3699d2b97bbe.png"></div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const passwordModal = document.getElementById('passwordModal');
-        const welcomeScreen = document.getElementById('welcomeScreen');
-        const mainContent = document.getElementById('mainContent');
-        const passwordInput = document.getElementById('passwordInput');
-        const submitPassword = document.getElementById('submitPassword');
+    // --- BAZA (DATABASE) LOGIKASI ---
+    let db;
+    const request = indexedDB.open("BestieDB", 1);
 
-        // Password Logic
-        submitPassword.addEventListener('click', function() {
-            if (passwordInput.value === 'gogoGAGA') {
-                passwordModal.style.display = 'none';
-                welcomeScreen.style.display = 'flex';
+    request.onupgradeneeded = (e) => {
+        db = e.target.result;
+        if(!db.objectStoreNames.contains("songs")) db.createObjectStore("songs", { keyPath: "id", autoIncrement: true });
+        if(!db.objectStoreNames.contains("notes")) db.createObjectStore("notes", { keyPath: "id", autoIncrement: true });
+    };
 
+    request.onsuccess = (e) => {
+        db = e.target.result;
+        displayStoredItems();
+    };
+
+    // --- PASSWORD & TABS ---
+    const pInput = document.getElementById('passwordInput');
+    document.getElementById('submitPassword').onclick = () => {
+        if(pInput.value === 'gogoGAGA') {
+            document.getElementById('passwordModal').style.display = 'none';
+            const welcome = document.getElementById('welcomeScreen');
+            welcome.style.display = 'flex';
+            setTimeout(() => {
+                welcome.style.opacity = '0';
                 setTimeout(() => {
-                    welcomeScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        welcomeScreen.style.display = 'none';
-                        mainContent.style.display = 'block';
-                    }, 800);
-                }, 2000);
-            } else {
-                passwordInput.value = '';
-                passwordInput.placeholder = 'Wrong code, bestie!';
-            }
-        });
-
-        // Enter key support
-        passwordInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') submitPassword.click();
-        });
-
-        // Tab switching
-        const tabs = document.querySelectorAll('.tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const target = this.getAttribute('data-tab');
-                tabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === target) content.classList.add('active');
-                });
-            });
-        });
-
-        // Decorative background elements
-        function createDeco() {
-            const icons = ['✨', '🌸', '⭐', '☁️'];
-            for (let i = 0; i < 15; i++) {
-                const span = document.createElement('span');
-                span.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-                span.className = 'sparkle';
-                span.style.left = Math.random() * 100 + 'vw';
-                span.style.top = Math.random() * 100 + 'vh';
-                span.style.fontSize = Math.random() * 20 + 10 + 'px';
-                document.body.appendChild(span);
-            }
+                    welcome.style.display = 'none';
+                    document.getElementById('mainContent').style.display = 'block';
+                }, 800);
+            }, 2000);
         }
-        createDeco();
+    };
+
+    document.querySelectorAll('.tab').forEach(t => {
+        t.onclick = () => {
+            document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
+            t.classList.add('active');
+            document.getElementById(t.dataset.tab).classList.add('active');
+        };
     });
+
+    // --- NOTES LOGIKASI ---
+    document.getElementById('addN').onclick = () => {
+        const text = document.getElementById('nText').value;
+        if(!text) return;
+        const tx = db.transaction(["notes"], "readwrite");
+        tx.objectStore("notes").add({text: text}).onsuccess = (e) => {
+            renderNote({id: e.target.result, text: text});
+            document.getElementById('nText').value = '';
+        };
+    };
+
+    function renderNote(obj) {
+        const div = document.createElement('div');
+        div.className = 'note';
+        div.innerHTML = `🌸 ${obj.text} <button class="del-item">×</button>`;
+        div.querySelector('.del-item').onclick = () => {
+            db.transaction(["notes"], "readwrite").objectStore("notes").delete(obj.id);
+            div.remove();
+        };
+        document.getElementById('userNotes').prepend(div);
+    }
+
+    // --- MUSIC LOGIKASI (Haqiqiy faylni bazaga saqlash) ---
+    document.getElementById('addM').onclick = () => {
+        const title = document.getElementById('mTitle').value;
+        const file = document.getElementById('mFile').files[0];
+        if(!title || !file) return alert("Fayl tanlang!");
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const blob = new Blob([e.target.result], {type: file.type});
+            const tx = db.transaction(["songs"], "readwrite");
+            tx.objectStore("songs").add({title: title, data: blob}).onsuccess = (ev) => {
+                renderSong({id: ev.target.result, title: title, data: blob});
+                document.getElementById('mTitle').value = '';
+                document.getElementById('mFile').value = '';
+            };
+        };
+        reader.readAsArrayBuffer(file);
+    };
+
+    function renderSong(obj) {
+        const url = URL.createObjectURL(obj.data);
+        const div = document.createElement('div');
+        div.className = 'song-card';
+        div.innerHTML = `
+            <div class="song-info"><h4>${obj.title}</h4><p>Added Vibe</p></div>
+            <button class="del-item">×</button>
+            <audio controls src="${url}"></audio>
+        `;
+        div.querySelector('.del-item').onclick = () => {
+            db.transaction(["songs"], "readwrite").objectStore("songs").delete(obj.id);
+            div.remove();
+        };
+        document.getElementById('userMusic').prepend(div);
+    }
+
+    function displayStoredItems() {
+        db.transaction("notes").objectStore("notes").openCursor().onsuccess = e => {
+            const cursor = e.target.result;
+            if(cursor) { renderNote(cursor.value); cursor.continue(); }
+        };
+        db.transaction("songs").objectStore("songs").openCursor().onsuccess = e => {
+            const cursor = e.target.result;
+            if(cursor) { renderSong(cursor.value); cursor.continue(); }
+        };
+    }
+
+    function createDeco() {
+        const icons = ['✨', '🌸', '⭐'];
+        for (let i = 0; i < 15; i++) {
+            const span = document.createElement('span');
+            span.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            span.className = 'sparkle';
+            span.style.left = Math.random() * 100 + 'vw';
+            span.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(span);
+        }
+    }
+    createDeco();
 </script>
 </body>
 </html>
